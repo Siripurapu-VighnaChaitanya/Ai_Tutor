@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased;
+  font-family: var(--font-sans);
+}
+
+.glass {
+  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
+}
+
+.chat-bubble-user {
+  @apply bg-indigo-600 text-white rounded-2xl rounded-tr-none px-4 py-2 shadow-md max-w-[80%];
+}
+
+.chat-bubble-ai {
+  @apply bg-white text-slate-800 rounded-2xl rounded-tl-none px-4 py-2 shadow-sm border border-slate-100 max-w-[80%];
+}
