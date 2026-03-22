@@ -9,8 +9,10 @@ class ContextManager:
 
     async def get_optimized_context(self, messages: List[Dict], current_summary: str = None):
         """
-        messages: list of {'role': str, 'content': str}
-        Returns: (processed_messages, new_summary)
+        [CONTEXT PRUNING TECHNIQUE]
+        Implements a sliding window + recursive summarization to strip irrelevant history 
+        and minimize token count. This ensures high-speed responses and lowest computational 
+        cost for local hardware in rural India.
         """
         if len(messages) <= self.threshold:
             return messages, current_summary
