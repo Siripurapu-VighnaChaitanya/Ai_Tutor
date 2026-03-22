@@ -24,7 +24,7 @@ const MessageBubble = ({ message }) => {
   };
 
   const renderContent = (content) => {
-    if (isUser) return <p className="text-sm md:text-base whitespace-pre-wrap leading-relaxed">{content}</p>;
+    if (isUser) return <p className="text-xs md:text-sm whitespace-pre-wrap leading-relaxed">{content}</p>;
 
     // Split by block math $$...$$ first
     const blocks = content.split(/(\$\$.*?\$\$)/gs);
@@ -55,16 +55,16 @@ const MessageBubble = ({ message }) => {
             </span>
           );
         }
-        return <span key={`${i}-${j}`} className="text-sm md:text-base whitespace-pre-wrap leading-relaxed">{part}</span>;
+        return <span key={`${i}-${j}`} className="text-xs md:text-sm whitespace-pre-wrap leading-relaxed">{part}</span>;
       });
     });
   };
   
   return (
     <div className={`flex w-full mb-3 ${isUser ? 'justify-end' : 'justify-start'}`}>
-      <div className={`max-w-[85%] rounded-[2rem] px-6 py-4 shadow-2xl relative group transition-all ${
+      <div className={`max-w-[85%] rounded-[1.5rem] px-4 py-3 shadow-xl relative group transition-all ${
         isUser 
-          ? 'bg-gradient-to-br from-indigo-500 to-violet-600 text-white rounded-tr-none shadow-[0_10px_30px_rgba(99,102,241,0.3)] border border-white/20' 
+          ? 'bg-gradient-to-br from-indigo-500 to-violet-600 text-white rounded-tr-none shadow-[0_8px_20px_rgba(99,102,241,0.25)] border border-white/20' 
           : message.isError 
             ? 'bg-red-500/10 text-red-200 border border-red-500/20 rounded-tl-none backdrop-blur-xl'
             : 'glass text-indigo-50 rounded-tl-none border-white/10'
@@ -74,10 +74,10 @@ const MessageBubble = ({ message }) => {
             whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.2)' }}
             whileTap={{ scale: 0.9 }}
             onClick={() => speak(message.content)}
-            className="absolute -right-14 top-0 p-3 rounded-2xl glass text-indigo-100 shadow-2xl border-white/10 opacity-0 group-hover:opacity-100 transition-all"
+            className="absolute -right-12 top-0 p-2.5 rounded-xl glass text-indigo-100 shadow-xl border-white/10 opacity-0 group-hover:opacity-100 transition-all"
             title="Read aloud"
           >
-            {isSpeaking ? <VolumeX size={20} /> : <Volume2 size={20} />}
+            {isSpeaking ? <VolumeX size={16} /> : <Volume2 size={16} />}
           </motion.button>
         )}
         <div className="math-container font-medium tracking-wide">

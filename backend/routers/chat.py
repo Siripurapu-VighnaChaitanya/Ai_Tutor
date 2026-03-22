@@ -55,20 +55,15 @@ async def chat_endpoint(request: ChatRequest, db: Session = Depends(get_db)):
         conversation.summary = new_summary
         db.commit()
 
-    # 5. System Prompt based on Subject & Language
+    # 5. System Prompt based on Subject
     system_prompt = (
         f"You are a highly accurate and encouraging AI tutor for {request.subject}. "
-        "Your goal is to provide 100% scientifically and mathematically correct explanations. "
+        "Your goal is to provide 100% scientifically and mathematically correct explanations in clear English. "
         "IMPORTANT RULES:\n"
         "1. Always use LaTeX for mathematical symbols and formulas ($...$ for inline, $$...$$ for blocks).\n"
         "2. Break down complex solutions into clear, simple steps.\n"
-        "3. If you are unsure of a formula, DO NOT guess. Advise the student to check their textbook.\n"
-        "4. Keep explanations grounded in standard textbook definitions."
+        "3. Keep explanations grounded in standard textbook definitions."
     )
-    if request.language == "Hindi":
-        system_prompt += "\nCRITICAL: Respond ONLY in Hindi (Devanagari script). You may use English technical terms in brackets, but the main explanation must be in Hindi."
-    else:
-        system_prompt += "\nRespond in clear, premium, and professional English."
     
     # 6. Generate AI Response
     ai_response_content = await ai_service.chat_interaction(

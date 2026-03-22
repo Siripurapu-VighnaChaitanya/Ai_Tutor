@@ -23,9 +23,7 @@ A high-performance, visually stunning AI tutoring platform designed for the mode
 - **Mathematical Precision**: **Centered LaTeX rendering** for complex formulas and scientific notation.
 
 ### 🛠️ Advanced Infrastructure
-- **Context Management**: Intelligent conversation pruning to maintain speed and accuracy during long sessions.
 - **Offline-First Persistence**: Local storage caching for instant access to recent learning history.
-- **Localized Learning**: Seamless toggle between **Hindi** and **English** modes.
 
 ---
 

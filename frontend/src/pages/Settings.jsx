@@ -23,50 +23,24 @@ const Settings = ({ onBack }) => {
   return (
     <div className="flex flex-col h-full relative overflow-hidden">
       {/* Header */}
-      <div className="p-6 border-b glass flex items-center gap-6 sticky top-0 z-30 rounded-b-[2rem] shadow-2xl">
+      <div className="p-4 border-b glass flex items-center gap-4 sticky top-0 z-30 rounded-b-[1.5rem] shadow-xl">
         <motion.button 
           whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.1)' }}
           whileTap={{ scale: 0.9 }}
           onClick={onBack} 
-          className="p-3 rounded-2xl text-white transition-all shadow-lg"
+          className="p-2.5 rounded-xl text-white transition-all shadow-md"
         >
-          <ChevronLeft size={24} />
+          <ChevronLeft size={20} />
         </motion.button>
-        <h2 className="font-black text-white text-2xl tracking-tight leading-none drop-shadow-sm text-left">Settings</h2>
+        <h2 className="font-black text-white text-xl tracking-tight leading-none drop-shadow-sm text-left">Settings</h2>
       </div>
 
       <motion.div 
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="flex-1 overflow-y-auto p-6 space-y-8 pb-24"
+        className="flex-1 overflow-y-auto p-4 space-y-6 pb-20"
       >
-        {/* Language Selection */}
-        <motion.div variants={itemVariants} className="space-y-4">
-          <div className="flex items-center gap-3 text-indigo-200 ml-2">
-            <Globe size={20} className="glow-indigo" />
-            <label className="font-black text-[10px] uppercase tracking-[0.3em] font-black">Preferred Language</label>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            {['English', 'Hindi'].map((lang) => (
-              <motion.button
-                key={lang}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => setSettings({ ...settings, language: lang })}
-                className={`p-5 rounded-3xl border-2 transition-all flex items-center justify-center gap-2 group ${
-                  settings.language === lang 
-                    ? 'border-indigo-400 bg-indigo-500/30 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] backdrop-blur-3xl' 
-                    : 'border-white/10 bg-white/5 text-indigo-100/60 hover:bg-white/10'
-                } font-black text-sm tracking-widest uppercase transition-all`}
-              >
-                {lang}
-                {settings.language === lang && <Sparkles size={14} className="animate-pulse" />}
-              </motion.button>
-            ))}
-          </div>
-        </motion.div>
-
         {/* Subject Selection */}
         <motion.div variants={itemVariants} className="space-y-4">
           <div className="flex items-center gap-3 text-indigo-200 ml-2">
@@ -80,14 +54,14 @@ const Settings = ({ onBack }) => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setSettings({ ...settings, subject: sub })}
-                className={`p-5 rounded-3xl border-2 transition-all flex items-center justify-center gap-2 group ${
+                className={`p-3.5 rounded-2xl border-2 transition-all flex items-center justify-center gap-2 group ${
                   settings.subject === sub 
-                    ? 'border-indigo-400 bg-indigo-500/30 text-white shadow-[0_0_20px_rgba(99,102,241,0.3)] backdrop-blur-3xl' 
+                    ? 'border-indigo-400 bg-indigo-500/30 text-white shadow-[0_0_15px_rgba(99,102,241,0.25)] backdrop-blur-3xl' 
                     : 'border-white/10 bg-white/5 text-indigo-100/60 hover:bg-white/10'
-                } font-black text-xs tracking-widest uppercase transition-all`}
+                } font-black text-[10px] tracking-widest uppercase transition-all`}
               >
                 {sub}
-                {settings.subject === sub && <Sparkles size={12} className="animate-pulse" />}
+                {settings.subject === sub && <Sparkles size={10} className="animate-pulse" />}
               </motion.button>
             ))}
           </div>
@@ -99,23 +73,23 @@ const Settings = ({ onBack }) => {
             <Shield size={20} className="glow-indigo" />
             <label className="font-black text-[10px] uppercase tracking-[0.3em] font-black">AI Guardrails</label>
           </div>
-          <div className="glass p-8 rounded-[2.5rem] border-white/10 shadow-xl group">
-            <div className="flex items-center justify-between gap-6">
-              <div className="space-y-1">
-                <p className="font-black text-white text-lg tracking-tight">Explain Simply</p>
-                <p className="text-xs text-indigo-100/50 font-medium leading-relaxed">Tailor vocabulary for younger students or beginners.</p>
+          <div className="glass p-5 rounded-[2rem] border-white/10 shadow-lg group">
+            <div className="flex items-center justify-between gap-4">
+              <div className="space-y-0.5">
+                <p className="font-black text-white text-base tracking-tight">Explain Simply</p>
+                <p className="text-[10px] text-indigo-100/50 font-medium leading-relaxed">Tailor vocabulary for younger students or beginners.</p>
               </div>
               <motion.button 
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setSettings({...settings, simpleExplain: !settings.simpleExplain})}
-                className={`w-16 h-8 rounded-full transition-all relative shadow-inner p-1 ${
-                  settings.simpleExplain ? 'bg-indigo-500 shadow-[0_0_20px_rgba(99,102,241,0.5)]' : 'bg-white/10'
+                className={`w-14 h-7 rounded-full transition-all relative shadow-inner p-1 ${
+                  settings.simpleExplain ? 'bg-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.4)]' : 'bg-white/10'
                 }`}
               >
                 <motion.div 
                   initial={false}
-                  animate={{ x: settings.simpleExplain ? 32 : 0 }}
-                  className="w-6 h-6 bg-white rounded-full shadow-lg" 
+                  animate={{ x: settings.simpleExplain ? 28 : 0 }}
+                  className="w-5 h-5 bg-white rounded-full shadow-lg" 
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
               </motion.button>

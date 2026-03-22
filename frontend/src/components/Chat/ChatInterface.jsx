@@ -26,7 +26,7 @@ const ChatInterface = () => {
       recognitionRef.current = new SpeechRecognition();
       recognitionRef.current.continuous = false;
       recognitionRef.current.interimResults = false;
-      recognitionRef.current.lang = settings.language === 'Hindi' ? 'hi-IN' : 'en-US';
+      recognitionRef.current.lang = 'en-US';
 
       recognitionRef.current.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
@@ -79,23 +79,23 @@ const ChatInterface = () => {
   return (
     <div className="flex flex-col h-full max-w-4xl mx-auto relative pb-28 md:pb-32 px-2 md:px-0">
       {/* Header - Glassmorphism */}
-      <div className="mt-4 p-4 md:p-6 border-b glass flex items-center justify-between sticky top-0 z-40 rounded-[2rem] shadow-2xl mx-1 md:mx-0">
-        <div className="flex items-center gap-3 md:gap-4 relative">
+      <div className="mt-2 p-3 md:p-4 border-b glass flex items-center justify-between sticky top-0 z-40 rounded-[1.5rem] shadow-xl mx-1 md:mx-0">
+        <div className="flex items-center gap-2 md:gap-3 relative">
           <motion.div 
             whileHover={{ rotate: 15 }}
-            className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-tr from-indigo-500 to-violet-500 rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.4)] border border-white/20"
+            className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-tr from-indigo-500 to-violet-500 rounded-xl flex items-center justify-center shadow-lg border border-white/20"
           >
-            <Sparkles size={22} className="text-white" />
+            <Sparkles size={18} className="text-white" />
           </motion.div>
           <div className="cursor-pointer group" onClick={() => setShowSubjectMenu(!showSubjectMenu)}>
-            <div className="flex items-center gap-2">
-              <h2 className="font-black text-white tracking-tight text-lg md:text-xl drop-shadow-sm">{settings.subject} Tutor</h2>
-              <Book size={16} className="text-indigo-300 group-hover:scale-110 transition-transform" />
+            <div className="flex items-center gap-1.5">
+              <h2 className="font-black text-white tracking-tight text-base md:text-lg drop-shadow-sm">{settings.subject} Tutor</h2>
+              <Book size={14} className="text-indigo-300 group-hover:scale-110 transition-transform" />
             </div>
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.5)]"></span>
-              <p className="text-[10px] md:text-[11px] text-indigo-100/70 uppercase tracking-[0.2em] font-black">
-                 {settings.language} MODE
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.4)]"></span>
+              <p className="text-[9px] md:text-[10px] text-indigo-100/70 uppercase tracking-[0.15em] font-black">
+                 Tutor Online
               </p>
             </div>
           </div>
@@ -134,10 +134,10 @@ const ChatInterface = () => {
             whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.1)' }}
             whileTap={{ scale: 0.9 }}
             onClick={clearChat}
-            className="p-3 md:p-4 rounded-2xl glass text-white shadow-xl group border-white/10"
+            className="p-2.5 md:p-3 rounded-xl glass text-white shadow-lg group border-white/10"
             title="Start New Chat"
           >
-            <Plus size={20} className="group-hover:rotate-90 transition-transform" />
+            <Plus size={18} className="group-hover:rotate-90 transition-transform" />
           </motion.button>
         </div>
       </div>
@@ -224,7 +224,7 @@ const ChatInterface = () => {
       </div>
 
       {/* Input Area - Glassmorphism */}
-      <div className="p-6 glass border-t border-white/10 sticky bottom-0 z-30 rounded-t-[2.5rem] shadow-[0_-20px_50px_rgba(0,0,0,0.3)]">
+      <div className="p-4 md:p-5 glass border-t border-white/10 sticky bottom-0 z-30 rounded-t-[2rem] shadow-[0_-15px_40px_rgba(0,0,0,0.3)]">
         {image && (
           <motion.div 
             initial={{ opacity: 0, y: 20, scale: 0.5 }}
@@ -254,10 +254,10 @@ const ChatInterface = () => {
             whileTap={{ scale: 0.9 }}
             type="button"
             onClick={() => fileInputRef.current.click()}
-            className="p-4 glass rounded-full text-indigo-100 hover:text-white transition-all shadow-lg"
+            className="p-3.5 glass rounded-full text-indigo-100 hover:text-white transition-all shadow-md"
             title="Attach Image"
           >
-            <Paperclip size={24} />
+            <Paperclip size={20} />
           </motion.button>
           
           <div className="relative flex-1">
@@ -265,25 +265,25 @@ const ChatInterface = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder={image ? "Explain this photo..." : `Ask your ${settings.subject} question...`}
-              className={`w-full bg-white/5 backdrop-blur-3xl rounded-[1.5rem] px-8 py-5 pr-32 text-base text-white placeholder:text-indigo-100/40 focus:outline-none focus:ring-2 transition-all border border-white/10 shadow-inner ${
+              placeholder={image ? "Explain this photo..." : `Ask your question...`}
+              className={`w-full bg-white/5 backdrop-blur-3xl rounded-[1.2rem] px-6 py-4 pr-28 text-sm text-white placeholder:text-indigo-100/40 focus:outline-none focus:ring-2 transition-all border border-white/10 shadow-inner ${
                 isListening ? 'ring-2 ring-red-500 bg-red-500/10' : 'focus:ring-indigo-500/50'
               }`}
               disabled={loading}
             />
             
-            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
+            <div className="absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 type="button"
                 onClick={toggleListening}
-                className={`p-3 rounded-full transition-all shadow-xl ${
+                className={`p-2.5 rounded-full transition-all shadow-lg ${
                   isListening ? 'bg-red-500 text-white animate-pulse' : 'bg-white/10 text-indigo-200 hover:text-white hover:bg-white/20'
                 }`}
                 title={isListening ? "Stop listening" : "Voice input"}
               >
-                {isListening ? <MicOff size={20} /> : <Mic size={20} />}
+                {isListening ? <MicOff size={18} /> : <Mic size={18} />}
               </motion.button>
               
               <motion.button
@@ -291,9 +291,9 @@ const ChatInterface = () => {
                 whileTap={{ scale: 0.95 }}
                 type="submit"
                 disabled={loading || (!input.trim() && !image)}
-                className="p-4 bg-indigo-600 text-white rounded-2xl hover:bg-indigo-500 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-xl shadow-indigo-950/50"
+                className="p-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-500 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-lg shadow-indigo-950/40"
               >
-                <Send size={20} />
+                <Send size={18} />
               </motion.button>
             </div>
           </div>

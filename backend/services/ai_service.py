@@ -46,7 +46,6 @@ class AIService:
         }
         
         if images and messages:
-            # Clean base64 strings (strip data:image/jpeg;base64, etc.)
             cleaned_images = []
             for img in images:
                 if "," in img:
@@ -61,20 +60,13 @@ class AIService:
             return response.json().get("message", {}).get("content", "Error: No response from model.")
         except Exception as e:
             logger.warning(f"Ollama reachable, using Mock Fallback: {e}")
-            print(f"DEBUG AI ERROR: {e}")
             # Mock Logic for Demo
             last_msg = messages[-1]['content'].lower()
             if "photograph" in last_msg or "photosynthesis" in last_msg:
-                return "Photosynthesis is the process used by plants to draw energy from sunlight and turn it into chemical energy. It happens in the chloroplasts using chlorophyll!"
+                return "Photosynthesis is the process used by plants to draw energy from sunlight and turn it into chemical energy."
             if "2+2" in last_msg or "2 + 2" in last_msg:
                 return "2 + 2 = 4. (Simple math demonstration)"
-            if "10 + 20" in last_msg or "10+20" in last_msg:
-                return "The sum of 10 and 20 is 30. Step-by-step: 10 + 20 = 30."
-            if "chemical reaction" in last_msg:
-                return "A chemical reaction is a process where substances (reactants) transform into new substances (products) by breaking and forming chemical bonds. For example, hydrogen and oxygen reacting to form water!"
-            if "cell" in last_msg:
-                return "A cell is the basic structural and functional unit of all living organisms. It's often called the 'building block of life'!"
-            return "Ollama is not running, but the system is ready! Once you start Ollama with 'tinyllama', I will give you full AI responses for more complex questions. (Mock Response)"
+            return "Ollama is not running, but the system is ready! Once you start Ollama with 'tinyllama', I will give you full AI responses. (Mock Response)"
 
     async def summarize_history(self, history: str):
         prompt = f"Summarize the following conversation history in a concise way (max 2 sentences):\n\n{history}"

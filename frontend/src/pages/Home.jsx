@@ -49,17 +49,17 @@ const Home = ({ onStart }) => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 glass max-w-5xl w-full p-10 md:p-20 rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-white/10"
+        className="relative z-10 glass max-w-4xl w-full p-8 md:p-14 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-white/10"
       >
-        <motion.div variants={itemVariants} className="flex justify-center mb-8">
-          <div className="w-24 h-24 bg-gradient-to-tr from-indigo-500 to-violet-600 rounded-3xl flex items-center justify-center shadow-[0_0_30px_rgba(99,102,241,0.5)] border border-white/20">
-            <Sparkles size={48} className="text-white animate-pulse" />
+        <motion.div variants={itemVariants} className="flex justify-center mb-6">
+          <div className="w-16 h-16 bg-gradient-to-tr from-indigo-500 to-violet-600 rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(99,102,241,0.4)] border border-white/20">
+            <Sparkles size={32} className="text-white animate-pulse" />
           </div>
         </motion.div>
         
         <motion.h1 
           variants={itemVariants}
-          className="text-6xl md:text-9xl font-black text-white mb-6 tracking-tight leading-[0.9] drop-shadow-2xl"
+          className="text-5xl md:text-7xl font-black text-white mb-4 tracking-tight leading-[0.95] drop-shadow-2xl"
         >
           Master Any <br />
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white to-violet-300">Subject</span>
@@ -75,46 +75,46 @@ const Home = ({ onStart }) => {
 
         <motion.p 
           variants={itemVariants}
-          className="text-xl md:text-2xl text-indigo-100/60 mb-12 max-w-2xl mx-auto leading-relaxed font-medium"
+          className="text-lg md:text-xl text-indigo-100/60 mb-10 max-w-xl mx-auto leading-relaxed font-medium"
         >
-          Your personal 24/7 AI Tutor. Smarter learning, localized for you, and built to work anywhere.
+          Your personal 24/7 AI Tutor. Smarter, faster learning built to work anywhere.
         </motion.p>
 
         <motion.div variants={itemVariants}>
           <motion.button 
-            whileHover={{ scale: 1.05, boxShadow: "0 0 50px rgba(99,102,241,0.6)" }}
+            whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(99,102,241,0.5)" }}
             whileTap={{ scale: 0.95 }}
             onClick={onStart}
-            className="group bg-white text-indigo-950 px-16 py-6 rounded-[2rem] font-black text-2xl hover:bg-slate-100 transition-all shadow-2xl flex items-center gap-4 mx-auto"
+            className="group bg-white text-indigo-950 px-12 py-4 rounded-[1.5rem] font-black text-xl hover:bg-slate-100 transition-all shadow-2xl flex items-center gap-3 mx-auto"
           >
             Start Learning 
-            <BookOpen size={28} className="group-hover:translate-x-1.5 transition-transform text-indigo-600" />
+            <BookOpen size={22} className="group-hover:translate-x-1.5 transition-transform text-indigo-600" />
           </motion.button>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-24">
-          <motion.div variants={itemVariants} whileHover={{ y: -12 }} className="glass p-10 rounded-[2.5rem] border-white/10 flex flex-col items-center hover:bg-white/10 transition-all cursor-default group shadow-lg">
-            <div className="p-5 bg-white/10 rounded-[1.5rem] mb-6 group-hover:bg-indigo-500/30 transition-all">
-              <Globe className="text-indigo-300" size={32} />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+          <motion.div variants={itemVariants} whileHover={{ y: -8 }} className="glass p-8 rounded-[2rem] border-white/10 flex flex-col items-center hover:bg-white/10 transition-all cursor-default group shadow-lg">
+            <div className="p-4 bg-white/10 rounded-[1.2rem] mb-5 group-hover:bg-indigo-500/30 transition-all">
+              <GraduationCap className="text-indigo-300" size={24} />
             </div>
-            <h3 className="font-bold text-white text-xl mb-3 tracking-tight">Hindi/English</h3>
-            <p className="text-sm text-indigo-100/50 leading-relaxed font-semibold">Switch languages instantly for better understanding.</p>
+            <h3 className="font-bold text-white text-lg mb-2 tracking-tight">24/7 Tutor</h3>
+            <p className="text-xs text-indigo-100/50 leading-relaxed font-semibold">Expert guidance available anytime, anywhere.</p>
           </motion.div>
 
-          <motion.div variants={itemVariants} whileHover={{ y: -12 }} className="glass p-10 rounded-[2.5rem] border-white/10 flex flex-col items-center hover:bg-white/10 transition-all cursor-default group shadow-lg">
-            <div className="p-5 bg-white/10 rounded-[1.5rem] mb-6 group-hover:bg-indigo-500/30 transition-all">
-              <Shield className="text-indigo-300" size={32} />
+          <motion.div variants={itemVariants} whileHover={{ y: -8 }} className="glass p-8 rounded-[2rem] border-white/10 flex flex-col items-center hover:bg-white/10 transition-all cursor-default group shadow-lg">
+            <div className="p-4 bg-white/10 rounded-[1.2rem] mb-5 group-hover:bg-indigo-500/30 transition-all">
+              <Shield className="text-indigo-300" size={24} />
             </div>
-            <h3 className="font-bold text-white text-xl mb-3 tracking-tight">Offline First</h3>
-            <p className="text-sm text-indigo-100/50 leading-relaxed font-semibold">Learn without limits, with local chat history and caching.</p>
+            <h3 className="font-bold text-white text-lg mb-2 tracking-tight">Privacy First</h3>
+            <p className="text-xs text-indigo-100/50 leading-relaxed font-semibold">Your learning data stays local and secure.</p>
           </motion.div>
 
-          <motion.div variants={itemVariants} whileHover={{ y: -12 }} className="glass p-10 rounded-[2.5rem] border-white/10 flex flex-col items-center hover:bg-white/10 transition-all cursor-default group shadow-lg">
-            <div className="p-5 bg-white/10 rounded-[1.5rem] mb-6 group-hover:bg-indigo-500/30 transition-all">
-              <Sparkles className="text-indigo-300" size={32} />
+          <motion.div variants={itemVariants} whileHover={{ y: -8 }} className="glass p-8 rounded-[2rem] border-white/10 flex flex-col items-center hover:bg-white/10 transition-all cursor-default group shadow-lg">
+            <div className="p-4 bg-white/10 rounded-[1.2rem] mb-5 group-hover:bg-indigo-500/30 transition-all">
+              <Sparkles className="text-indigo-300" size={24} />
             </div>
-            <h3 className="font-bold text-white text-xl mb-3 tracking-tight">AI Vision</h3>
-            <p className="text-sm text-indigo-100/50 leading-relaxed font-semibold">Upload photos of your textbooks for instant analysis.</p>
+            <h3 className="font-bold text-white text-lg mb-2 tracking-tight">AI Vision</h3>
+            <p className="text-xs text-indigo-100/50 leading-relaxed font-semibold">Snap a photo of any problem for instant help.</p>
           </motion.div>
         </div>
       </motion.main>

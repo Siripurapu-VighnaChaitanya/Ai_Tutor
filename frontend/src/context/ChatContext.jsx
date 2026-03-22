@@ -11,7 +11,6 @@ export const ChatProvider = ({ children }) => {
   const [currentConversationId, setCurrentConversationId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [settings, setSettings] = useState({
-    language: 'English',
     subject: 'General',
     simpleExplain: false
   });
@@ -54,7 +53,6 @@ export const ChatProvider = ({ children }) => {
         message: text,
         conversation_id: currentConversationId,
         subject: settings.subject,
-        language: settings.language,
         image
       });
 
