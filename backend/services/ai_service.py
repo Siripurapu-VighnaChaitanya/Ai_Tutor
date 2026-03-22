@@ -69,7 +69,7 @@ class AIService:
                 return "A chemical reaction is a process where substances (reactants) transform into new substances (products) by breaking and forming chemical bonds. For example, hydrogen and oxygen reacting to form water!"
             if "cell" in last_msg:
                 return "A cell is the basic structural and functional unit of all living organisms. It's often called the 'building block of life'!"
-            return "Ollama is not running, but the system is ready! Once you start Ollama with 'mistral', I will give you full AI responses for more complex questions. (Mock Response)"
+            return "Ollama is not running, but the system is ready! Once you start Ollama with 'tinyllama', I will give you full AI responses for more complex questions. (Mock Response)"
 
     async def summarize_history(self, history: str):
         prompt = f"Summarize the following conversation history in a concise way (max 2 sentences):\n\n{history}"

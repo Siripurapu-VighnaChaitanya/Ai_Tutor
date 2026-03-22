@@ -20,7 +20,7 @@ A high-performance, visually stunning AI tutoring platform designed for the mode
 - **Multi-Subject Mastery**: Specialized tutor personas for Math, Science, English, and General knowledge.
 - **AI Vision (OCR/Analysis)**: Upload textbook photos or handwritten notes for instant step-by-step solutions (powered by `moondream`).
 - **Voice Interaction**: Hands-free learning with built-in Speech-to-Text and Text-to-Speech support.
-- **Mathematical Precision**: 센터드 LaTeX rendering for complex formulas and scientific notation.
+- **Mathematical Precision**: **Centered LaTeX rendering** for complex formulas and scientific notation.
 
 ### 🛠️ Advanced Infrastructure
 - **Context Management**: Intelligent conversation pruning to maintain speed and accuracy during long sessions.
@@ -35,7 +35,7 @@ A high-performance, visually stunning AI tutoring platform designed for the mode
 - **Ollama**: Download from [ollama.com](https://ollama.com).
 - **Models**: Pull the education and vision models:
   ```bash
-  ollama pull mistral   # For reasoning
+  ollama pull tinyllama # For reasoning
   ollama pull moondream # For image analysis
   ```
 - **Node.js** (v18+) & **Python** (v3.10+)
