@@ -1,16 +1,59 @@
 @import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+@theme {
+  --color-indigo-600: #818cf8;
+  --color-indigo-700: #6366f1;
+}
 
 :root {
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --glass-bg: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-blur: 20px;
 }
 
 body {
-  @apply bg-slate-50 text-slate-900 antialiased;
-  font-family: var(--font-sans);
+  @apply antialiased text-white overflow-x-hidden;
+  background: radial-gradient(circle at top left, #1e1b4b, #020617),
+              radial-gradient(circle at bottom right, #312e81, #0f172a);
+  background-size: cover;
+  min-height: 100vh;
 }
 
 .glass {
-  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.math-container .katex-display {
+  @apply my-6 p-8 bg-white/10 rounded-[2rem] border border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.05)] backdrop-blur-3xl overflow-x-auto;
+}
+
+.math-container .katex {
+  @apply text-white font-semibold;
+}
+
+/* Vibrant Glows */
+.glow-indigo {
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+}
+
+.text-aurora {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white to-violet-300;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-400/30 rounded-full hover:bg-slate-400/50 transition-colors;
 }
 
 .chat-bubble-user {

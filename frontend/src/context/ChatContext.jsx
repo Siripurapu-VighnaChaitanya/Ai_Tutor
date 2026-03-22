@@ -12,11 +12,11 @@ export const ChatProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [settings, setSettings] = useState({
     language: 'English',
-    subject: 'Math',
+    subject: 'General',
     simpleExplain: false
   });
 
-  const API_BASE = 'http://localhost:8000/api';
+  const API_BASE = 'http://localhost:8001/api';
 
   useEffect(() => {
     // Load conversations from backend on mount
@@ -25,9 +25,15 @@ export const ChatProvider = ({ children }) => {
     // Check localStorage for offline cache
     const cached = localStorage.getItem('chat_history');
     if (cached) {
-      // Logic to merge or show cached data if backend is unreachable
+      setMessages(JSON.parse(cached));
     }
   }, []);
+
+  const clearChat = () => {
+    setMessages([]);
+    setCurrentConversationId(null);
+    localStorage.removeItem('chat_history');
+  };
 
   const fetchConversations = async () => {
     try {
@@ -38,8 +44,8 @@ export const ChatProvider = ({ children }) => {
     }
   };
 
-  const sendMessage = async (text) => {
-    const userMsg = { role: 'user', content: text, timestamp: new Date().toISOString() };
+  const sendMessage = async (text, image = null) => {
+    const userMsg = { role: 'user', content: text, image, timestamp: new Date().toISOString() };
     setMessages(prev => [...prev, userMsg]);
     setLoading(true);
 
@@ -48,7 +54,8 @@ export const ChatProvider = ({ children }) => {
         message: text,
         conversation_id: currentConversationId,
         subject: settings.subject,
-        language: settings.language
+        language: settings.language,
+        image
       });
 
       const aiMsg = { 
@@ -62,7 +69,7 @@ export const ChatProvider = ({ children }) => {
       
       // Update local storage for offline access
       const updatedHistory = [...messages, userMsg, aiMsg];
-      localStorage.setItem('chat_history', JSON.stringify(updatedHistory.slice(-10)));
+      localStorage.setItem('chat_history', JSON.stringify(updatedHistory.slice(-20)));
 
     } catch (err) {
       console.error("Error sending message:", err);
@@ -78,7 +85,7 @@ export const ChatProvider = ({ children }) => {
 
   return (
     <ChatContext.Provider value={{ 
-      messages, setMessages, sendMessage, loading, settings, setSettings, 
+      messages, setMessages, sendMessage, loading, settings, setSettings, clearChat,
       conversations, currentConversationId, setCurrentConversationId 
     }}>
       {children}
