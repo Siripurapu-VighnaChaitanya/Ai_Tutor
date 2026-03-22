@@ -26,17 +26,22 @@ class AIService:
             logger.error(f"Error generating response: {e}")
             return f"Error: {str(e)}"
 
-    async def chat_interaction(self, messages: list, images=None):
+    async def chat_interaction(self, messages: list, system_prompt: str = None, images=None):
         """
         messages: list of objects with 'role' and 'content'
         """
+        # Inject system prompt if provided
+        formatted_messages = []
+        if system_prompt:
+            formatted_messages.append({"role": "system", "content": system_prompt})
+        formatted_messages.extend(messages)
+
         # Automatically switch to a vision model if an image is provided
-        # TinyLlama cannot process images. Moondream is a lightweight vision model.
         target_model = "moondream" if images else self.model
         
         payload = {
             "model": target_model,
-            "messages": messages,
+            "messages": formatted_messages,
             "stream": False
         }
         

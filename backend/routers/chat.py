@@ -66,13 +66,14 @@ async def chat_endpoint(request: ChatRequest, db: Session = Depends(get_db)):
         "4. Keep explanations grounded in standard textbook definitions."
     )
     if request.language == "Hindi":
-        system_prompt += "\nRespond primarily in Hindi. Provide English terms in brackets for complex concepts."
+        system_prompt += "\nCRITICAL: Respond ONLY in Hindi (Devanagari script). You may use English technical terms in brackets, but the main explanation must be in Hindi."
     else:
         system_prompt += "\nRespond in clear, premium, and professional English."
     
     # 6. Generate AI Response
     ai_response_content = await ai_service.chat_interaction(
-        processed_history, 
+        processed_history,
+        system_prompt=system_prompt,
         images=[request.image] if request.image else None
     )
 
