@@ -15,7 +15,7 @@ export const ChatProvider = ({ children }) => {
     simpleExplain: false
   });
 
-  const API_BASE = 'http://localhost:8001/api';
+  const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8001/api';
 
   useEffect(() => {
     // Load conversations from backend on mount
