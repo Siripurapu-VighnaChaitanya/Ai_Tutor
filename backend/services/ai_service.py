@@ -26,7 +26,7 @@ class AIService:
             logger.error(f"Error generating response: {e}")
             return f"Error: {str(e)}"
 
-    async def chat_interaction(self, messages: list):
+    async def chat_interaction(self, messages: list, images=None):
         """
         messages: list of objects with 'role' and 'content'
         """
@@ -35,6 +35,9 @@ class AIService:
             "messages": messages,
             "stream": False
         }
+        if images and messages:
+            messages[-1]["images"] = images
+
         try:
             response = requests.post(self.chat_url, json=payload, timeout=300.0)
             response.raise_for_status()

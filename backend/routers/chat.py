@@ -21,6 +21,7 @@ class ChatRequest(BaseModel):
     conversation_id: Optional[int] = None
     subject: str = "General"
     language: str = "English"
+    image: Optional[str] = None  # Base64 encoded image
 
 ai_service = AIService()
 context_manager = ContextManager(ai_service)
@@ -62,7 +63,10 @@ async def chat_endpoint(request: ChatRequest, db: Session = Depends(get_db)):
         system_prompt += "Respond in clear, simple English."
     
     # 6. Generate AI Response
-    ai_response_content = await ai_service.chat_interaction(processed_history)
+    ai_response_content = await ai_service.chat_interaction(
+        processed_history, 
+        images=[request.image] if request.image else None
+    )
 
     # 7. Save AI message
     ai_msg = Message(conversation_id=conversation.id, role="assistant", content=ai_response_content)
