@@ -1,50 +1,87 @@
-# AI Education Tutor for Remote India
+# 🌌 AI Education Tutor: Midnight Aurora Edition
 
-A fast, scalable, mobile-first AI tutoring platform designed for low-bandwidth and offline-first environments.
+[![React](https://img.shields.io/badge/Frontend-React-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
+[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind--CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![Ollama](https://img.shields.io/badge/AI--Engine-Ollama-white?style=for-the-badge&logo=ollama)](https://ollama.com/)
 
-## Features
-- **Modern Chat Interface**: Adaptive, mobile-friendly design.
-- **Context Pruning**: Automatically summarizes long conversations to save tokens and bandwidth.
-- **Offline-First**: Caches recent conversations in `localStorage`.
-- **Multilingual Support**: English and Hindi toggle with subject-aware prompt engineering.
-- **Low-Bandwidth Optimized**: Gzip compression and efficient JSON payloads.
+A high-performance, visually stunning AI tutoring platform designed for the modern learner. Built with a "Midnight Aurora" aesthetic, this tool provides real-time, personalized education across multiple subjects with advanced AI vision and voice capabilities.
 
-## Tech Stack
-- **Frontend**: React (Vite), Tailwind CSS, Framer Motion.
-- **Backend**: FastAPI (Python), SQLAlchemy, SQLite.
-- **AI Engine**: Local LLM via Ollama (Mistral/LLaMA 3).
+---
 
-## Prerequisites
-1. **Ollama**: Install from [ollama.com](https://ollama.com).
-2. **Model**: Pull the model you want to use:
-   ```bash
-   ollama pull mistral
-   ```
-3. **Python 3.10+**
-4. **Node.js 18+**
+## ✨ Key Features
 
-## Setup Instructions
+### 🎨 Premium Design System
+- **Midnight Aurora Theme**: A deep, vibrant dark mode with animated mesh gradients.
+- **Glassmorphism UI**: High-end frosted glass headers, message bubbles, and settings panels.
+- **Fluid Animations**: Sophisticated transitions and skeleton loaders powered by **Framer Motion**.
 
-### 1. Backend Setup
+### 🧠 Smart AI Tutoring
+- **Multi-Subject Mastery**: Specialized tutor personas for Math, Science, English, and General knowledge.
+- **AI Vision (OCR/Analysis)**: Upload textbook photos or handwritten notes for instant step-by-step solutions (powered by `moondream`).
+- **Voice Interaction**: Hands-free learning with built-in Speech-to-Text and Text-to-Speech support.
+- **Mathematical Precision**: 센터드 LaTeX rendering for complex formulas and scientific notation.
+
+### 🛠️ Advanced Infrastructure
+- **Context Management**: Intelligent conversation pruning to maintain speed and accuracy during long sessions.
+- **Offline-First Persistence**: Local storage caching for instant access to recent learning history.
+- **Localized Learning**: Seamless toggle between **Hindi** and **English** modes.
+
+---
+
+## 🚀 Quick Setup
+
+### 1. Prerequisites
+- **Ollama**: Download from [ollama.com](https://ollama.com).
+- **Models**: Pull the education and vision models:
+  ```bash
+  ollama pull mistral   # For reasoning
+  ollama pull moondream # For image analysis
+  ```
+- **Node.js** (v18+) & **Python** (v3.10+)
+
+### 2. Backend Installation
 ```bash
 cd backend
 pip install -r requirements.txt
 python main.py
 ```
-The API will be available at `http://localhost:8001`.
+> [!IMPORTANT]
+> The backend now runs on **Port 8001** to prevent system conflicts.
 
-### 2. Frontend Setup
+### 3. Frontend Installation
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-The app will be available at `http://localhost:5173`.
+The app will be available at [http://localhost:5173](http://localhost:5173).
 
-## Deployment
-- **Frontend**: Deploy to Netlify or Vercel (Free tier).
-- **Backend**: Deploy to Render or Fly.io (Free tier). Configure SQLite volume or use a free PostgreSQL tier.
-- **Local**: Use Docker or run both services locally as shown above.
+---
 
-## AI integration (Ollama)
-The system connects to `http://localhost:11434` by default. Ensure Ollama is running before starting the chat.
+## 📂 Project Structure
+
+```text
+├── backend/
+│   ├── models/       # Database schemas (SQLite/SQLAlchemy)
+│   ├── routers/      # API endpoints (Chat & Logic)
+│   ├── services/     # AI integration & Context pruning
+│   └── main.py       # FastAPI Entry Point (Port 8001)
+├── frontend/
+│   ├── src/
+│   │   ├── components/ # Chat Interface & Message Bubbles
+│   │   ├── context/    # Global State (ChatContext)
+│   │   ├── pages/      # Home & Settings (Aura Themed)
+│   │   └── App.jsx     # Navigation & Routing
+└── README.md
+```
+
+---
+
+## 💡 Usage Tips
+- **Switch Tutors**: Use the dropdown in the chat header to change tutors instantly without leaving the conversation.
+- **New Chat**: Tap the **"+" button** in the header to start a fresh learning session.
+- **Vision Mode**: Use the Paperclip icon to upload problems. The AI will switch to "Analysis Mode" automatically.
+
+---
+*Created with ❤️ for Educational Transformation.*
