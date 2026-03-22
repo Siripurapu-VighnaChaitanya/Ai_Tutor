@@ -48,8 +48,12 @@ async def chat_endpoint(request: ChatRequest, db: Session = Depends(get_db)):
     all_messages = db.query(Message).filter(Message.conversation_id == conversation.id).order_by(Message.timestamp.asc()).all()
     history = [{"role": m.role, "content": m.content} for m in all_messages]
 
-    # 4. Context Pruning
-    processed_history, new_summary = await context_manager.get_optimized_context(history, conversation.summary)
+    # 4. Context Pruning (Textbook & History)
+    processed_history, new_summary, pruning_stats = await context_manager.get_optimized_context(
+        history, 
+        subject=request.subject, 
+        current_summary=conversation.summary
+    )
     
     if new_summary != conversation.summary:
         conversation.summary = new_summary
@@ -80,7 +84,8 @@ async def chat_endpoint(request: ChatRequest, db: Session = Depends(get_db)):
     return {
         "conversation_id": conversation.id,
         "response": ai_response_content,
-        "summary": conversation.summary
+        "summary": conversation.summary,
+        "pruning_stats": pruning_stats
     }
 
 @router.get("/conversations")

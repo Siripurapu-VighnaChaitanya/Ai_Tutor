@@ -59,7 +59,8 @@ export const ChatProvider = ({ children }) => {
       const aiMsg = { 
         role: 'assistant', 
         content: res.data.response, 
-        timestamp: new Date().toISOString() 
+        timestamp: new Date().toISOString(),
+        pruningStats: res.data.pruning_stats
       };
       
       setMessages(prev => [...prev, aiMsg]);

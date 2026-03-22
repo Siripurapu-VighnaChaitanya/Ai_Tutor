@@ -147,6 +147,26 @@ const ChatInterface = () => {
         ref={scrollRef}
         className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 scroll-smooth pt-8"
       >
+        {/* Context Pruning Status Indicator */}
+        <AnimatePresence>
+          {messages.length > 0 && messages[messages.length - 1]?.pruningStats?.chapters_stripped > 0 && (
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="flex justify-center mb-4 sticky top-4 z-30"
+            >
+              <div className="px-4 py-1.5 glass rounded-full flex items-center gap-2 border border-indigo-500/30 shadow-[0_4px_15px_rgba(79,70,229,0.2)]">
+                <Sparkles size={12} className="text-indigo-400" />
+                <span className="text-[10px] font-black text-indigo-100 uppercase tracking-widest">
+                  Context Pruning Active: {messages[messages.length - 1].pruningStats.chapters_stripped} Chapters Stripped
+                </span>
+                <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <AnimatePresence initial={false}>
           {messages.length === 0 ? (
             <motion.div 
