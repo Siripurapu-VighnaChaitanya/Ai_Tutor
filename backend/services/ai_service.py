@@ -30,13 +30,25 @@ class AIService:
         """
         messages: list of objects with 'role' and 'content'
         """
+        # Automatically switch to a vision model if an image is provided
+        # TinyLlama cannot process images. Moondream is a lightweight vision model.
+        target_model = "moondream" if images else self.model
+        
         payload = {
-            "model": self.model,
+            "model": target_model,
             "messages": messages,
             "stream": False
         }
+        
         if images and messages:
-            messages[-1]["images"] = images
+            # Clean base64 strings (strip data:image/jpeg;base64, etc.)
+            cleaned_images = []
+            for img in images:
+                if "," in img:
+                    cleaned_images.append(img.split(",")[1])
+                else:
+                    cleaned_images.append(img)
+            messages[-1]["images"] = cleaned_images
 
         try:
             response = requests.post(self.chat_url, json=payload, timeout=300.0)
