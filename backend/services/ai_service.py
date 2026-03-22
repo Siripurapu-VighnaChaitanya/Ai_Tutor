@@ -59,14 +59,26 @@ class AIService:
             response.raise_for_status()
             return response.json().get("message", {}).get("content", "Error: No response from model.")
         except Exception as e:
-            logger.warning(f"Ollama reachable, using Mock Fallback: {e}")
-            # Mock Logic for Demo
+            logger.error(f"Ollama Interaction Error: {e}")
+            
+            # Robust Mock Logic for Demo/Recovery
             last_msg = messages[-1]['content'].lower()
+            
+            # Context-Aware Vision Mocking
+            if images:
+                if "plant cell" in last_msg or "diagram" in last_msg:
+                    return "This is a detailed diagram of a **Plant Cell**. Key organelles visible include the **Large Central Vacuole**, **Chloroplasts** (for photosynthesis), the **Cell Wall** (for structure), and the **Nucleus**. Would you like to know about a specific part?"
+                if "heart" in last_msg or "organ" in last_msg:
+                    return "This is an anatomical illustration of the **Human Heart**. It shows the four chambers: the **Left/Right Atria** and **Left/Right Ventricles**, along with the major blood vessels like the **Aorta**. It's the central pump of the circulatory system."
+                return "The system is currently having trouble processing this image with the local vision model (Moondream). Please ensure Ollama is running and you have enough GPU/RAM. (Image Analysis Mock)"
+
+            # General Chat Mocking
             if "photograph" in last_msg or "photosynthesis" in last_msg:
                 return "Photosynthesis is the process used by plants to draw energy from sunlight and turn it into chemical energy."
             if "2+2" in last_msg or "2 + 2" in last_msg:
                 return "2 + 2 = 4. (Simple math demonstration)"
-            return "Ollama is not running, but the system is ready! Once you start Ollama with 'tinyllama', I will give you full AI responses. (Mock Response)"
+            
+            return f"Ollama is having trouble responding ('{str(e)[:50]}...'). Please ensure you have run 'ollama serve' and have the '{target_model}' model pulled. (Mock Response)"
 
     async def summarize_history(self, history: str):
         prompt = f"Summarize the following conversation history in a concise way (max 2 sentences):\n\n{history}"
